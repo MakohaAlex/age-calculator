@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h2 class="text-center">Age Calculator</h2>
+                    <form id="ageForm">
+                        <div class="mb-3">
+                            <label for="birthdate" class="form-label">Enter your birthdate:</label>
+                            <input type="date" class="form-control" id="birthdate" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Calculate Age</button>
+                    </form>
+                    <div class="mt-4">
+                        <h4>Your Age:</h4>
+                        <p id="ageDisplay" class="text-success fs-4">-</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+	document.getElementById('ageForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const birthdate = new Date(document.getElementById('birthdate').value);
+    const today = new Date();
+    
+    let age = today.getFullYear() - birthdate.getFullYear();
+    const monthDifference = today.getMonth() - birthdate.getMonth();
+    
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthdate.getDate())) {
+        age--;
+    }
+    
+    document.getElementById('ageDisplay').innerText = age + " years old";
+});
+
+	
+	
+	
+	</script>
+</body>
+</html>
